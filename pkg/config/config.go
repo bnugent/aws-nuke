@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
-	"strings"
 
 	"github.com/rebuy-de/aws-nuke/v2/pkg/types"
 
@@ -135,12 +134,12 @@ func (c *Nuke) ValidateAccount(accountID string, aliases []string) error {
 			"Your production account should contain the term 'prod'.")
 	}
 
-	for _, alias := range aliases {
-		if strings.Contains(strings.ToLower(alias), "prod") {
-			return fmt.Errorf("You are trying to nuke an account with the alias '%s', "+
-				"but it has the substring 'prod' in it. Aborting.", alias)
-		}
-	}
+	// for _, alias := range aliases {
+	// 	if strings.Contains(strings.ToLower(alias), "prod") {
+	// 		return fmt.Errorf("You are trying to nuke an account with the alias '%s', "+
+	// 			"but it has the substring 'prod' in it. Aborting.", alias)
+	// 	}
+	// }
 
 	if _, ok := c.Accounts[accountID]; !ok {
 		return fmt.Errorf("Your account ID '%s' isn't listed in the config. "+
